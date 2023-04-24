@@ -8,8 +8,8 @@ function App() {
     const updatedBooks = books.map((book) => {
       if (book.id === id) {
         return { ...book, title: newTitle };
-        return book;
       }
+      return book;
     });
     setBooks(updatedBooks);
   };
@@ -28,6 +28,7 @@ function App() {
   };
   return (
     <div className="app">
+      <h1> Reading List</h1>
       <BookList
         onEdit={editBookById}
         books={books}
