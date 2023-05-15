@@ -1,3 +1,12 @@
 {
-  "books": []
+  "books": [
+    {
+      "title": "asdd",
+      "id": 1
+    },
+    {
+      "title": "",
+      "id": 2
+    }
+  ]
 }
