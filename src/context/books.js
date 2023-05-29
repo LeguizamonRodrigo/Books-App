@@ -10,7 +10,7 @@ function Provider({ children }) {
     setBooks(response.data);
   };
   const editBookById = async (id, newTitle) => {
-    const response = await axios.put(`http://localhost3001/books${id}`, {
+    const response = await axios.put(`http://localhost3001/books/${id}`, {
       title: newTitle,
     });
 
@@ -22,7 +22,7 @@ function Provider({ children }) {
     });
     setBooks(updatedBooks);
   };
-  const deleteBooksById = async (id) => {
+  const deleteBookById = async (id) => {
     await axios.delete(`http://localhost:3001/books/${id}`);
 
     const updatedBooks = books.filter((book) => {
@@ -34,8 +34,21 @@ function Provider({ children }) {
     const response = await axios.post("http://localhost:3001/books", {
       title,
     });
+    const newBook = response.data;
+    setBooks((prevBooks) => [...prevBooks, newBook]);
   };
-  return <BooksContext.Provider value={{}}>{children}</BooksContext.Provider>;
+  const valueToShare = {
+    books,
+    deleteBookById,
+    editBookById,
+    createBook,
+    fetchBooks,
+  };
+  return (
+    <BooksContext.Provider value={valueToShare}>
+      {children}
+    </BooksContext.Provider>
+  );
 }
 export { Provider };
 export default BooksContext;
